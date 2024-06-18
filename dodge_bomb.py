@@ -44,7 +44,20 @@ def gm_end(screen: any) -> None:
 
     time.sleep(5)
 
-    
+def rotate_bird(right, left, up, down):
+    FLIP_STATES = {
+    (pg.up, pg.right): (False, False, 45),
+    (pg.up, pg.left): (True, False, 45),
+    (pg.down, pg.right): (False, True, 45),
+    (pg.down, pg.left): (True, True, 45),
+    pg.up: (False, False, 90),
+    pg.down: (False, True, 90),
+    pg.left: (True, False, 0),
+    pg.right: (False, False, 0),
+}
+    return FLIP_STATES
+
+
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
