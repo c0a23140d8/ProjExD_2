@@ -21,21 +21,21 @@ def gm_end(screen: any) -> None:
     戻り値：なし
     画面が薄い黒になって、GAMEOVERの表示が5秒出る
     """
-    black_b = pg.Surface((1600, 900))
+    black_b = pg.Surface((1600, 900))#黒い四角を作る
     pg.draw.rect(black_b,(0, 0, 0) , pg.Rect(0, 0, 1600, 900))
     black_b.set_alpha(100)
     screen.blit(black_b, [0, 0])
     
-    font = pg.font.Font(None, 80)
+    font = pg.font.Font(None, 80)#文字の表示
     txt = font.render("GAME OVER", True, (255, 255, 255))
     screen.blit(txt, [650, 450])
     
-    img_l = pg.image.load("fig/8.png")
+    img_l = pg.image.load("fig/8.png")#左にこうかとんを表示
     enn_l = pg.Surface((20, 20))
     pg.draw.circle(enn_l, (255, 0, 0), (10, 10), 10)
     screen.blit(img_l, [600, 450])
     
-    img_r = pg.image.load("fig/8.png")
+    img_r = pg.image.load("fig/8.png")#右のこうかとんを表示
     enn_r = pg.Surface((20, 20))
     pg.draw.circle(enn_r, (255, 0, 0), (10, 10), 10)
     screen.blit(img_r, [1000, 450])
@@ -43,7 +43,7 @@ def gm_end(screen: any) -> None:
     pg.display.update()
 
     time.sleep(5)
-    
+
     
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
