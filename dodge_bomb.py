@@ -43,6 +43,7 @@ def gm_end(screen: any) -> None:
     pg.display.update()
 
     time.sleep(5)
+    
 
 def rotate_bird(img):
     FLIP = {
