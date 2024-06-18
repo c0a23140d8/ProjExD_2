@@ -44,18 +44,27 @@ def gm_end(screen: any) -> None:
 
     time.sleep(5)
 
-def rotate_bird(right, left, up, down):
-    FLIP_STATES = {
-    (pg.up, pg.right): (False, False),
-    (pg.up, pg.left): (True, False),
-    (pg.down, pg.right): (False, True),
-    (pg.down, pg.left): (True, True),
-    pg.up: (False, False),
-    pg.down: (False, True),
-    pg.left: (True, False),
-    pg.right: (False, False),
+def rotate_bird(img):
+    FLIP = {
+    (0, +5):pg.transform.rotozoom(img, 270, 2.0),
+    (+5, +5):pg.transform.rotozoom(img, 225, 2.0),
+    (+5, 0):pg.transform.rotozoom(img, 180, 2.0),
+    (+5, -5):pg.transform.rotozoom(img, 135, 2.0),
+    (0, -5):pg.transform.rotozoom(img, 90, 2.0),
+    (-5, -5):pg.transform.rotozoom(img, 45, 2.0),
+    (-5, 0):pg.transform.rotozoom(img, 0, 2.0),
+    (-5, +5):pg.transform.rotozoom(img, 315, 2.0),
 }
-    return FLIP_STATES
+
+    return FLIP
+
+
+def acca_exp(bob):
+    accs = [a for a in range(1, 11)]
+    
+    for r in range(1, 11):
+        bob = pg.Surface((20*r, 20*r))
+        pg.draw.circle(bob, (255, 0, 0), (10*r, 10*r), 10*r)
 
 
 def main():
@@ -88,6 +97,9 @@ def main():
             if key_lst[k]:
                 sum_mv[0] += v[0]
                 sum_mv[1] += v[1]
+        for y, t in rotate_bird(kk_img).items():
+            if sum_mv == y:
+                kk_img = t
         kk_rct.move_ip(sum_mv)
         if cheak_bound(kk_rct) != (True, True):
             kk_rct.move_ip(-sum_mv[0], -sum_mv[1])
