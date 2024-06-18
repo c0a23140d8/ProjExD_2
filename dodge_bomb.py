@@ -1,4 +1,5 @@
 import os
+import time
 import random
 import sys
 import pygame as pg
@@ -14,6 +15,36 @@ DELTA = {# 移動量の辞書
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
+def gm_end(screen: any) -> None:
+    """
+    引数：全画面のscreen
+    戻り値：なし
+    画面が薄い黒になって、GAMEOVERの表示が5秒出る
+    """
+    black_b = pg.Surface((1600, 900))
+    pg.draw.rect(black_b,(0, 0, 0) , pg.Rect(0, 0, 1600, 900))
+    black_b.set_alpha(100)
+    screen.blit(black_b, [0, 0])
+    
+    font = pg.font.Font(None, 80)
+    txt = font.render("GAME OVER", True, (255, 255, 255))
+    screen.blit(txt, [650, 450])
+    
+    img_l = pg.image.load("fig/8.png")
+    enn_l = pg.Surface((20, 20))
+    pg.draw.circle(enn_l, (255, 0, 0), (10, 10), 10)
+    screen.blit(img_l, [600, 450])
+    
+    img_r = pg.image.load("fig/8.png")
+    enn_r = pg.Surface((20, 20))
+    pg.draw.circle(enn_r, (255, 0, 0), (10, 10), 10)
+    screen.blit(img_r, [1000, 450])
+
+    pg.display.update()
+
+    time.sleep(5)
+    
+    
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -34,9 +65,10 @@ def main():
             if event.type == pg.QUIT: 
                 return
         if kk_rct.colliderect(bb_rct): #衝突判定
+            gm_end(screen)
             return#ゲームオーバー
+        
         screen.blit(bg_img, [0, 0]) 
-
         key_lst = pg.key.get_pressed()
         sum_mv = [0, 0]
         for k, v in DELTA.items():
