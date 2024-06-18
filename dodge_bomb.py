@@ -46,14 +46,14 @@ def gm_end(screen: any) -> None:
 
 def rotate_bird(right, left, up, down):
     FLIP_STATES = {
-    (pg.up, pg.right): (False, False, 45),
-    (pg.up, pg.left): (True, False, 45),
-    (pg.down, pg.right): (False, True, 45),
-    (pg.down, pg.left): (True, True, 45),
-    pg.up: (False, False, 90),
-    pg.down: (False, True, 90),
-    pg.left: (True, False, 0),
-    pg.right: (False, False, 0),
+    (pg.up, pg.right): (False, False),
+    (pg.up, pg.left): (True, False),
+    (pg.down, pg.right): (False, True),
+    (pg.down, pg.left): (True, True),
+    pg.up: (False, False),
+    pg.down: (False, True),
+    pg.left: (True, False),
+    pg.right: (False, False),
 }
     return FLIP_STATES
 
